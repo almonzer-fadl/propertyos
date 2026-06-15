@@ -1,8 +1,26 @@
+"use client";
+
+import { useState } from "react";
 import { Camera, CheckCircle2, Clock3, Wrench } from "lucide-react";
-import { tenantRequests } from "../../../_data/propertyos";
+import { useDemo } from "../../../_components/demo-context";
 import { PageHeader, Panel, SectionHeading, StatusBadge } from "../../../_components/ui";
 
 export default function TenantRequestsPage() {
+  const { tenantRequests, addTenantRequest } = useDemo();
+  const [title, setTitle] = useState("");
+  const [category, setCategory] = useState("Plumbing");
+  const [priority, setPriority] = useState("Urgent");
+  const [entry, setEntry] = useState("After 2 PM");
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = () => {
+    if (!title.trim()) return;
+    addTenantRequest(title.trim(), "", priority);
+    setTitle("");
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 2000);
+  };
+
   return (
     <div className="space-y-5">
       <PageHeader
@@ -15,12 +33,46 @@ export default function TenantRequestsPage() {
         <Panel>
           <SectionHeading title="New request" subtitle="Demo form fields for a tenant-submitted work order." />
           <div className="grid grid-cols-2 gap-3">
-            {["Category: Plumbing", "Location: Kitchen", "Priority: Urgent", "Entry: After 2 PM"].map((field) => (
-              <button key={field} className="min-h-14 rounded-2xl bg-[#f7f3ea] px-3 py-3 text-left text-sm font-bold text-[#3f453b]">
-                {field}
-              </button>
-            ))}
+            {[
+              { label: "Category: Plumbing", value: "Plumbing" },
+              { label: "Category: Electrical", value: "Electrical" },
+              { label: "Priority: Urgent", value: "Urgent" },
+              { label: "Priority: High", value: "High" },
+              { label: "Entry: After 2 PM", value: "After 2 PM" },
+              { label: "Entry: Doorman only", value: "Doorman only" },
+            ].map(({ label, value }) => {
+              const isCategory = label.startsWith("Category");
+              const isPriority = label.startsWith("Priority");
+              const isEntry = label.startsWith("Entry");
+              const active = isCategory ? category === value : isPriority ? priority === value : entry === value;
+              return (
+                <button
+                  key={label}
+                  onClick={() => {
+                    if (isCategory) setCategory(value);
+                    else if (isPriority) setPriority(value);
+                    else setEntry(value);
+                  }}
+                  className={`min-h-14 rounded-2xl px-3 py-3 text-left text-sm font-bold transition ${
+                    active
+                      ? "bg-[#151612] text-white"
+                      : "bg-[#f7f3ea] text-[#3f453b] hover:bg-[#ece6d9]"
+                  }`}
+                >
+                  {label}
+                </button>
+              );
+            })}
           </div>
+
+          <input
+            type="text"
+            placeholder="Describe the issue (e.g. Water leaking under kitchen sink...)"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="mt-4 w-full rounded-2xl border border-dashed border-[#cfd8c7] bg-[#fbfaf5] px-4 py-4 text-sm text-[#151612] placeholder:text-[#a3aca0] outline-none focus:border-[#9eb191]"
+          />
+
           <div className="mt-4 rounded-2xl border border-dashed border-[#cfd8c7] bg-[#fbfaf5] p-4">
             <div className="flex items-center gap-2 font-bold">
               <Camera size={17} />
@@ -28,8 +80,12 @@ export default function TenantRequestsPage() {
             </div>
             <p className="mt-2 text-sm text-[#667065]">4 images attached to help the manager triage faster.</p>
           </div>
-          <button className="mt-4 w-full rounded-2xl bg-[#151612] px-4 py-3 text-sm font-bold text-white">
-            Submit request
+
+          <button
+            onClick={handleSubmit}
+            className="mt-4 w-full rounded-2xl bg-[#151612] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#2a2c24]"
+          >
+            {submitted ? "Request submitted!" : "Submit request"}
           </button>
         </Panel>
 
@@ -37,7 +93,7 @@ export default function TenantRequestsPage() {
           <SectionHeading title="My requests" subtitle="Status, priority, and timing for every request." />
           <div className="space-y-3">
             {tenantRequests.map((request) => (
-              <div key={request.title} className="rounded-[24px] bg-[#f7f3ea] p-4">
+              <div key={request.id} className="rounded-[24px] bg-[#f7f3ea] p-4">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex gap-3">
                     <div className="grid size-11 place-items-center rounded-2xl bg-white text-[#4e74a5]">

@@ -1,9 +1,15 @@
+"use client";
+
 import Link from "next/link";
 import { Camera, ChevronRight, FileText, Home, MessageCircle, Wrench } from "lucide-react";
+import { useDemo } from "../../_components/demo-context";
 import { PageHeader, Panel, SectionHeading, StatusBadge } from "../../_components/ui";
-import { tenantDocuments, tenantMessages, tenantRequests } from "../../_data/propertyos";
+import { tenantDocuments } from "../../_data/propertyos";
 
 export default function TenantPortalPage() {
+  const { tenantRequests, messages, unreadTenantCount } = useDemo();
+  const tenantMsgs = messages.filter((m) => m.kind === "tenant");
+
   return (
     <div className="space-y-5">
       <PageHeader
@@ -17,8 +23,8 @@ export default function TenantPortalPage() {
       <div className="grid gap-4 md:grid-cols-3">
         {[
           ["Current home", "Marina Heights 12B", Home],
-          ["Open requests", "2 active", Wrench],
-          ["Unread messages", "1 new", MessageCircle],
+          ["Open requests", `${tenantRequests.length} active`, Wrench],
+          ["Unread messages", `${unreadTenantCount} new`, MessageCircle],
         ].map(([label, value, Icon]) => (
           <div key={label as string} className="rounded-[26px] bg-[#f3efe5] p-5 transition duration-300 hover:-translate-y-0.5">
             <div className="grid size-11 place-items-center rounded-2xl bg-white text-[#2d6b3d]">
@@ -36,9 +42,9 @@ export default function TenantPortalPage() {
           <div className="rounded-[28px] bg-white p-4 shadow-sm">
             <div className="grid grid-cols-2 gap-3">
               {["Plumbing", "Kitchen", "Urgent", "After 2 PM"].map((item) => (
-                <button key={item} className="min-h-12 rounded-2xl bg-[#f3efe5] px-3 py-3 text-sm font-bold text-[#3f453b] transition hover:bg-[#ece6d9]">
+                <Link key={item} href="/tenet/portal/requests" className="min-h-12 rounded-2xl bg-[#f3efe5] px-3 py-3 text-sm font-bold text-[#3f453b] transition hover:bg-[#ece6d9]">
                   {item}
-                </button>
+                </Link>
               ))}
             </div>
             <div className="mt-4 rounded-2xl border border-dashed border-[#cfd8c7] bg-[#fbfaf5] p-4">
@@ -59,8 +65,8 @@ export default function TenantPortalPage() {
         <Panel>
           <SectionHeading title="Request status" subtitle="No need to text the manager for basic updates." />
           <div className="space-y-3">
-            {tenantRequests.slice(0, 3).map((request) => (
-              <Link key={request.title} href="/tenet/portal/requests" className="flex items-center gap-3 rounded-[24px] bg-[#f7f3ea] p-4">
+            {tenantRequests.slice(0, 4).map((request) => (
+              <Link key={request.id} href="/tenet/portal/requests" className="flex items-center gap-3 rounded-[24px] bg-[#f7f3ea] p-4">
                 <div className="grid size-11 place-items-center rounded-2xl bg-white text-[#4e74a5]">
                   <Wrench size={18} />
                 </div>
@@ -95,8 +101,8 @@ export default function TenantPortalPage() {
         <Panel>
           <SectionHeading title="Messages" subtitle="Manager and contractor updates in one thread." />
           <div className="space-y-3">
-            {tenantMessages.slice(0, 3).map((message) => (
-              <Link key={message.subject} href="/tenet/portal/messages" className="flex items-center gap-3 rounded-[24px] bg-[#f7f3ea] p-4">
+            {tenantMsgs.slice(0, 3).map((message) => (
+              <Link key={message.id} href="/tenet/portal/messages" className="flex items-center gap-3 rounded-[24px] bg-[#f7f3ea] p-4">
                 <MessageCircle size={18} />
                 <div className="min-w-0 flex-1">
                   <p className="truncate font-bold">{message.subject}</p>
