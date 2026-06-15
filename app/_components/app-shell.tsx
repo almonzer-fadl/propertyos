@@ -25,7 +25,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <div className="flex h-full flex-col rounded-[32px] border border-white/80 bg-white/72 p-4 shadow-[0_18px_70px_rgba(61,67,50,0.12)] ring-1 ring-[#dfe5d8]/70 backdrop-blur">
             <Link href="/dashboard" className="flex items-center gap-3 rounded-[24px] p-2">
               <div className="grid size-12 place-items-center rounded-[20px] bg-[#151612] overflow-hidden p-1.5">
-                <img src="/vantlaunch-logo.png" alt="VantLaunch" className="h-full w-full object-contain" />
+                <img src="/vantlaunch-icon.png" alt="VantLaunch" className="h-full w-full object-contain" />
               </div>
               <div>
                 <p className="text-base font-bold tracking-tight">PropertyOS</p>
@@ -108,7 +108,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <div className="flex items-center justify-between gap-3">
               <Link href="/dashboard" className="flex items-center gap-3">
                 <div className="grid size-11 place-items-center rounded-2xl bg-[#151612] overflow-hidden p-1.5">
-                  <img src="/vantlaunch-logo.png" alt="VantLaunch" className="h-full w-full object-contain" />
+                  <img src="/vantlaunch-icon.png" alt="VantLaunch" className="h-full w-full object-contain" />
                 </div>
                 <div>
                   <p className="font-bold">PropertyOS</p>
