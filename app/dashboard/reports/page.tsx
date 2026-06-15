@@ -11,8 +11,8 @@ export default function ReportsPage() {
     <div className="space-y-6">
       <PageHeader
         eyebrow="Company OS / Reports"
-        title="Owner-ready reporting without spreadsheet cleanup."
-        description="Give managers instant visibility into maintenance volume, occupancy, contractor response, and owner report readiness."
+        title="Owner reports that used to take you 3 hours. Now: one click."
+        description="Maintenance volume, occupancy, resolution times, cost summaries — everything an owner expects in a monthly packet, generated from data you're already tracking."
         actionLabel="Open owner app"
         actionHref="/owner/portal"
       />

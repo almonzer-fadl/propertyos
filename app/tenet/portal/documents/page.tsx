@@ -26,8 +26,8 @@ export default function TenantDocumentsPage() {
     <div className="space-y-5">
       <PageHeader
         eyebrow="Tenant app / Documents"
-        title="Lease and property documents on demand."
-        description="Tenants can access lease agreements, inspection reports, building guides, and payment instructions without asking the manager."
+        title="Your lease, move-in report, and building info. Always here."
+        description="No need to email the manager every time you need a copy of your lease or want to check the building handbook. Everything lives right here."
       />
 
       <Panel>

@@ -12,8 +12,8 @@ export default function OwnerMessagesPage() {
     <div className="space-y-5">
       <PageHeader
         eyebrow="Owner app / Messages"
-        title="Owner communication stays attached to the portfolio."
-        description="Updates and questions live next to the property context instead of disappearing into email threads."
+        title="Messages that stay connected to your property."
+        description="No more scrolling through your inbox trying to find what the manager said about Unit 12B. Every conversation stays right here, attached to the portfolio."
       />
 
       <div className="grid gap-5 xl:grid-cols-[0.85fr_1.15fr]">

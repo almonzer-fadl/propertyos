@@ -11,8 +11,8 @@ export default function OwnerReportsPage() {
     <div className="space-y-5">
       <PageHeader
         eyebrow="Owner app / Reports"
-        title="Monthly performance, ready to review."
-        description="Owners can open performance summaries, maintenance cost reports, and occupancy snapshots from one place."
+        title="The monthly packet. Already done."
+        description="Occupancy, rent collected, maintenance costs, portfolio trends — all the numbers your manager used to compile by hand. Now they just appear."
         actionLabel="Export packet"
         actionHref="/owner/portal/reports"
       />

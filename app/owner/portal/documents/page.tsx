@@ -19,8 +19,8 @@ export default function OwnerDocumentsPage() {
     <div className="space-y-5">
       <PageHeader
         eyebrow="Owner app / Documents"
-        title="Statements, reports, invoices, and property files."
-        description="A clean document vault for owner-visible files without exposing internal manager notes."
+        title="Statements, reports, and invoices. No email attachments."
+        description="Every document related to your property lives here — organized by type and date, not scattered across forwarded email chains you can never find."
       />
 
       <Panel>

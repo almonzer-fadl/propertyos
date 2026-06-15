@@ -18,8 +18,8 @@ export default function TenantsPage() {
     <div className="space-y-6">
       <PageHeader
         eyebrow="Company OS / Tenants"
-        title="Tenant records that connect communication to operations."
-        description="Managers can see who lives where, what is open, when they were last contacted, and what the tenant sees in their app."
+        title="Know who needs what, before they have to ask."
+        description="No more digging through old texts to remember which tenant has the leaky sink and who's waiting on a part. Every tenant, their unit, open requests, and last contact in one list."
         actionLabel="Open tenant app"
         actionHref="/tenet/portal"
       />

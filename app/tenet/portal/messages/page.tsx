@@ -12,8 +12,8 @@ export default function TenantMessagesPage() {
     <div className="space-y-5">
       <PageHeader
         eyebrow="Tenant app / Messages"
-        title="All maintenance communication in one place."
-        description="Tenants can see manager replies, contractor scheduling, and building notices without jumping between WhatsApp and email."
+        title="Manager updates and contractor schedules. Not lost in WhatsApp."
+        description="See every reply from your property manager, every contractor visit time, and every building notice in one thread — searchable and permanent."
       />
 
       <div className="grid gap-5 xl:grid-cols-[0.85fr_1.15fr]">

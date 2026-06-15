@@ -14,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PropertyOS | VantLaunch Demo",
+  title: "PropertyOS — Property Management Operating System by VantLaunch",
   description:
-    "A property management operating system demo for maintenance, owner visibility, documents, and reporting.",
+    "Stop running your portfolio from a WhatsApp group. Maintenance, tenants, owners, contractors, documents, and reporting — all in one place, built for property managers.",
 };
 
 export default function RootLayout({

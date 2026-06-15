@@ -21,8 +21,8 @@ export default function MaintenancePage() {
     <div className="space-y-6">
       <PageHeader
         eyebrow="Company OS / Maintenance"
-        title="A repair command center built for real property workflows."
-        description="Tenants submit structured requests, managers triage with context, contractors get assigned, and owners only see clean approved updates. Click a ticket to advance its status."
+        title="Every repair request, tracked. No more 'did the plumber show up?'"
+        description="Your tenants submit requests with photos. You triage, assign a contractor, and the owner sees only what you want them to see. Click any ticket to advance its status — just like you would in real life."
         actionLabel="View tenant app"
         actionHref="/tenet/portal"
       />

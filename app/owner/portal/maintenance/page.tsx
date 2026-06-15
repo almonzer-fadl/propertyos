@@ -12,8 +12,8 @@ export default function OwnerMaintenancePage() {
     <div className="space-y-5">
       <PageHeader
         eyebrow="Owner app / Maintenance"
-        title="Maintenance history without exposing internal noise."
-        description="Owners see approved repair updates, cost context, assigned vendors, and completion status."
+        title="Repairs you should know about. None of the back-and-forth."
+        description="See which issues are open at your property, who's handling them, and what they cost — without wading through internal manager notes or contractor dispatch chatter."
       />
 
       <div className="grid gap-4 lg:grid-cols-3">

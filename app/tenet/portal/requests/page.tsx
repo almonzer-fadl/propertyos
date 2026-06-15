@@ -27,8 +27,8 @@ export default function TenantRequestsPage() {
     <div className="space-y-5">
       <PageHeader
         eyebrow="Tenant app / Requests"
-        title="Create and track maintenance requests."
-        description="The request form captures priority, location, photos, access permission, and the current status timeline."
+        title="Report a problem. Attach photos. Know exactly when it gets fixed."
+        description="Pick the category, tell us when to enter, snap a photo of the issue — and you'll see every step from 'submitted' to 'resolved' without ever having to chase anyone."
       />
 
       <div className="grid gap-5 xl:grid-cols-[0.9fr_1.1fr]">

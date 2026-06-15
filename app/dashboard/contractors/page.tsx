@@ -7,8 +7,8 @@ export default function ContractorsPage() {
     <div className="space-y-6">
       <PageHeader
         eyebrow="Company OS / Contractors"
-        title="Know who is assigned, overloaded, and reliable."
-        description="Contractor visibility helps managers assign the right person, track response times, and keep repair history attached to the property."
+        title="Know who shows up, who doesn't, and who's overloaded."
+        description="Which plumber actually answers the phone? Who's got 4 open jobs already? Track response times and keep a repair history tied to every contractor so you know who to call first."
         actionLabel="Assign work order"
         actionHref="/dashboard/maintenance"
       />

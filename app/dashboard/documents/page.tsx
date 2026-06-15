@@ -28,8 +28,8 @@ export default function DocumentsPage() {
     <div className="space-y-6">
       <PageHeader
         eyebrow="Company OS / Documents"
-        title="Documents live where the work happens."
-        description="Leases, inspections, invoices, owner statements, and maintenance photos are linked to properties, tenants, owners, and tickets."
+        title="The filing cabinet you don't need a key for."
+        description="Lease agreements, inspection reports, contractor invoices, owner statements — all searchable and linked to the property, not buried in an email attachment from 8 months ago."
         actionLabel="Open owner app"
         actionHref="/owner/portal"
       />

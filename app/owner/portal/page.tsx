@@ -15,8 +15,8 @@ export default function OwnerPortalPage() {
     <div className="space-y-5">
       <PageHeader
         eyebrow="Owner app"
-        title="A clean portfolio view without manager follow-ups."
-        description="Owners can see performance, maintenance, documents, reports, and approved updates from the property manager."
+        title="Your property. Your numbers. No phone tag required."
+        description="See exactly what's happening: occupancy, rent collected, open maintenance, and monthly reports — updated by your property manager. You see what they approve, nothing less, nothing more."
         actionLabel="Download report"
         actionHref="/owner/portal/reports"
       />

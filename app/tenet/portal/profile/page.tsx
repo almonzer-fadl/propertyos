@@ -6,8 +6,8 @@ export default function TenantProfilePage() {
     <div className="space-y-5">
       <PageHeader
         eyebrow="Tenant app / Profile"
-        title="Tenant details and service preferences."
-        description="A simple tenant profile for home details, contact preferences, emergency contacts, and entry permission."
+        title="Your details, entry preferences, and contact info. One place."
+        description="Keep your phone number, entry instructions, and notification preferences updated so the maintenance team always has the right info before they arrive."
       />
 
       <div className="grid gap-5 xl:grid-cols-[0.8fr_1.2fr]">

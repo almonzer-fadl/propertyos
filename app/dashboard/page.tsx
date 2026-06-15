@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
+import Link from "next/link";
 import {
   ArrowRight,
   Building2,
@@ -45,9 +45,9 @@ export default function DashboardPage() {
   return (
     <div className="space-y-6">
       <PageHeader
-        eyebrow="Property company OS"
-        title="Run the entire property operation from one calm dashboard."
-        description="A modern command center for maintenance, tenants, owners, contractors, documents, and reporting. Built to replace spreadsheets, email chains, and WhatsApp follow-ups."
+        eyebrow="PropertyOS by VantLaunch"
+        title="Stop running your portfolio from a WhatsApp group."
+        description="Every maintenance request, tenant question, and owner update in one place. No more scrolling through chat threads to find out if the plumber showed up."
         actionLabel="Open maintenance"
         actionHref="/dashboard/maintenance"
       />
@@ -72,14 +72,14 @@ export default function DashboardPage() {
       <div className="grid gap-5 xl:grid-cols-[1.35fr_0.65fr]">
         <Panel>
           <SectionHeading
-            title="Today's operating queue"
-            subtitle="Every request has context, priority, owner visibility, and next action."
+            title="What needs attention right now"
+            subtitle="Every ticket has the context you'd normally dig through 3 apps to find."
           />
           <div className="mb-4 flex items-center gap-3 rounded-[22px] bg-[#f5f1e7] px-4 py-3">
             <Search size={17} className="text-[#7a8276]" />
             <input
               type="text"
-              placeholder="Filter by title, property, tenant, or ticket ID..."
+              placeholder="Filter by issue, property, tenant, or ticket ID..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               className="w-full bg-transparent text-sm text-[#151612] placeholder:text-[#a3aca0] outline-none"
@@ -122,25 +122,25 @@ export default function DashboardPage() {
 
         <Panel>
           <SectionHeading
-            title="Demo flow"
-            subtitle="Buttons for the three-app sales walkthrough."
+            title="Live demo walkthrough"
+            subtitle="Click through the exact flow your team would use every day."
           />
           <div className="grid gap-3">
             <SoftButton href="/dashboard/maintenance">
               <Wrench size={17} />
-              Triage urgent work
+              Triage incoming work
             </SoftButton>
             <SoftButton href="/tenet/portal">
               <MessageSquareText size={17} />
-              Tenant submits request
+              Tenant submits a request
             </SoftButton>
             <SoftButton href="/owner/portal">
               <ShieldCheck size={17} />
-              Owner sees update
+              Owner sees the update
             </SoftButton>
             <SoftButton href="/dashboard/documents">
               <FileText size={17} />
-              Attach documents
+              Documents attached to the work
             </SoftButton>
           </div>
         </Panel>
@@ -148,7 +148,7 @@ export default function DashboardPage() {
 
       <div className="grid gap-5 xl:grid-cols-[0.8fr_1.2fr]">
         <Panel>
-          <SectionHeading title="Urgent work" subtitle={`${urgentTickets.length} tickets need fast attention.`} />
+          <SectionHeading title="Urgent right now" subtitle={`${urgentTickets.length} tickets need immediate attention.`} />
           <div className="space-y-3">
             {urgentTickets.map((ticket) => (
               <div key={ticket.id} className="rounded-[22px] bg-[#fff0ea] p-4">
@@ -158,13 +158,13 @@ export default function DashboardPage() {
               </div>
             ))}
             {urgentTickets.length === 0 && (
-              <p className="text-sm text-[#667065]">No urgent tickets. Great work.</p>
+              <p className="text-sm text-[#667065]">Nothing urgent. A rare and beautiful moment.</p>
             )}
           </div>
         </Panel>
 
         <Panel>
-          <SectionHeading title="Portfolio health" subtitle="A quick scan across properties, occupancy, and open issues." />
+          <SectionHeading title="Portfolio at a glance" subtitle="The summary you used to spend Monday morning building from scratch." />
           <div className="grid gap-3 md:grid-cols-2">
             {properties.map((property) => (
               <Link
@@ -201,11 +201,11 @@ export default function DashboardPage() {
 
       <div className="grid gap-5 xl:grid-cols-2">
         <Panel>
-          <SectionHeading title="Maintenance trend" subtitle="Resolution and ticket volume over the last eight weeks." />
+          <SectionHeading title="Maintenance trend" subtitle="Are things getting better or worse? Now you actually know." />
           <MiniBars values={reportSeries} />
         </Panel>
         <Panel>
-          <SectionHeading title="Recent activity" subtitle="The audit trail that replaces hunting through chats." />
+          <SectionHeading title="What just happened" subtitle="The audit trail that means you never have to ask 'who did what' again." />
           <Timeline items={activity} />
         </Panel>
       </div>
@@ -217,7 +217,7 @@ export default function DashboardPage() {
         </SoftButton>
         <SoftButton href="/dashboard/reports">
           <ArrowRight size={17} />
-          Generate reports
+          Owner-ready reports
         </SoftButton>
         <SoftButton href="/owner/portal">
           <ShieldCheck size={17} />

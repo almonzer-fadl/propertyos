@@ -8,8 +8,8 @@ export default function PropertiesPage() {
     <div className="space-y-6">
       <PageHeader
         eyebrow="Company OS / Properties"
-        title="Every property has its own operational record."
-        description="Portfolio cards connect units, owners, occupancy, open issues, documents, and next actions in one place."
+        title="The portfolio overview you currently build by hand every Monday."
+        description="Units, occupancy, open issues, monthly rent, owner details, and recent documents — all attached to the property record instead of scattered across 5 different places."
         actionLabel="Open reports"
         actionHref="/dashboard/reports"
       />

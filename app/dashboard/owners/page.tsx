@@ -7,8 +7,8 @@ export default function OwnersPage() {
     <div className="space-y-6">
       <PageHeader
         eyebrow="Company OS / Owners"
-        title="Owner relationships without manual status chasing."
-        description="Track which owners need updates, which reports are ready, and what information is safe to expose in the owner app."
+        title="Owners stop calling you when they can see everything themselves."
+        description="Which owners are waiting on reports? Whose property has open issues? What visibility level does each owner have? No more 'just checking in' calls."
         actionLabel="Open owner app"
         actionHref="/owner/portal"
       />

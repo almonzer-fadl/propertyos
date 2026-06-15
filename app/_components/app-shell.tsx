@@ -24,12 +24,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <aside className="sticky top-0 hidden h-screen w-[280px] shrink-0 p-4 lg:block">
           <div className="flex h-full flex-col rounded-[32px] border border-white/80 bg-white/72 p-4 shadow-[0_18px_70px_rgba(61,67,50,0.12)] ring-1 ring-[#dfe5d8]/70 backdrop-blur">
             <Link href="/dashboard" className="flex items-center gap-3 rounded-[24px] p-2">
-              <div className="grid size-12 place-items-center rounded-[20px] bg-[#151612] font-bold text-white">
-                PO
+              <div className="grid size-12 place-items-center rounded-[20px] bg-[#151612] overflow-hidden p-1.5">
+                <img src="/vantlaunch-logo.png" alt="VantLaunch" className="h-full w-full object-contain" />
               </div>
               <div>
                 <p className="text-base font-bold tracking-tight">PropertyOS</p>
-                <p className="text-xs font-medium text-[#7a8276]">VantLaunch demo</p>
+                <p className="text-xs font-medium text-[#7a8276]">by VantLaunch</p>
               </div>
             </Link>
 
@@ -75,7 +75,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
             <div className="mt-6 border-t border-[#e3e6dc] pt-4">
               <p className="px-3 text-xs font-bold uppercase tracking-[0.16em] text-[#8b927f]">
-                Demo portals
+                Portals
               </p>
               <div className="mt-2 space-y-1.5">
                 {portalItems.map((item) => {
@@ -107,8 +107,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <header className="sticky top-0 z-20 border-b border-white/70 bg-[#f3efe5]/82 px-4 py-3 backdrop-blur md:px-7 lg:hidden">
             <div className="flex items-center justify-between gap-3">
               <Link href="/dashboard" className="flex items-center gap-3">
-                <div className="grid size-11 place-items-center rounded-2xl bg-[#151612] text-sm font-bold text-white">
-                  PO
+                <div className="grid size-11 place-items-center rounded-2xl bg-[#151612] overflow-hidden p-1.5">
+                  <img src="/vantlaunch-logo.png" alt="VantLaunch" className="h-full w-full object-contain" />
                 </div>
                 <div>
                   <p className="font-bold">PropertyOS</p>

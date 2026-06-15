@@ -14,8 +14,8 @@ export default function TenantPortalPage() {
     <div className="space-y-5">
       <PageHeader
         eyebrow="Tenant app"
-        title="Submit issues and track your home from your phone."
-        description="A tenant-first portal for maintenance, photos, documents, messages, entry permission, and live request status."
+        title="Something broken? Submit it in 30 seconds. Track it until it's fixed."
+        description="Snap a photo, pick a category, tell us when to enter — and then watch the status instead of texting your manager 'any update?' every 3 days."
         actionLabel="New request"
         actionHref="/tenet/portal/requests"
       />
