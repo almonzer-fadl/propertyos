@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import {
   ArrowRight,
@@ -7,12 +9,12 @@ import {
   ShieldCheck,
   Wrench,
 } from "lucide-react";
+import { useDemo } from "../_components/demo-context";
 import {
   activity,
   metrics,
   properties,
   reportSeries,
-  tickets,
 } from "../_data/propertyos";
 import {
   Metric,
@@ -26,7 +28,9 @@ import {
 } from "../_components/ui";
 
 export default function DashboardPage() {
-  const urgentTickets = tickets.filter((ticket) => ticket.priority === "Urgent");
+  const { tickets } = useDemo();
+  const urgentTickets = tickets.filter((t) => t.priority === "Urgent");
+  const openTickets = tickets.filter((t) => t.status !== "Resolved");
 
   return (
     <div className="space-y-6">
@@ -39,19 +43,30 @@ export default function DashboardPage() {
       />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        {metrics.map((metric) => (
-          <Metric key={metric.label} {...metric} />
-        ))}
+        {metrics.map((metric, i) => {
+          if (i === 2) {
+            return (
+              <Metric
+                key={metric.label}
+                label="Open work orders"
+                value={String(openTickets.length)}
+                change={`${urgentTickets.length} urgent`}
+                tone="coral"
+              />
+            );
+          }
+          return <Metric key={metric.label} {...metric} />;
+        })}
       </div>
 
       <div className="grid gap-5 xl:grid-cols-[1.35fr_0.65fr]">
         <Panel>
           <SectionHeading
-            title="Today’s operating queue"
+            title="Today's operating queue"
             subtitle="Every request has context, priority, owner visibility, and next action."
           />
           <div className="grid gap-3">
-            {tickets.slice(0, 4).map((ticket) => (
+            {openTickets.slice(0, 4).map((ticket) => (
               <Link
                 key={ticket.id}
                 href="/dashboard/maintenance"
@@ -117,6 +132,9 @@ export default function DashboardPage() {
                 <p className="mt-1 text-sm text-[#6f635d]">{ticket.property}</p>
               </div>
             ))}
+            {urgentTickets.length === 0 && (
+              <p className="text-sm text-[#667065]">No urgent tickets. Great work.</p>
+            )}
           </div>
         </Panel>
 
