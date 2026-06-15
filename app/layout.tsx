@@ -16,7 +16,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "PropertyOS — Property Management Operating System by VantLaunch",
   description:
-    "Stop running your portfolio from a WhatsApp group. Maintenance, tenants, owners, contractors, documents, and reporting — all in one place, built for property managers.",
+    "A ready-to-deploy property management operating system. Setup, branding, configuration, customization, deployment, training, and support by VantLaunch.",
+  icons: {
+    icon: "/brand/favicon.png",
+    shortcut: "/brand/favicon.png",
+    apple: "/brand/icon.PNG",
+  },
 };
 
 export default function RootLayout({
