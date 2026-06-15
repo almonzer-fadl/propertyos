@@ -1,9 +1,16 @@
+"use client";
+
 import Link from "next/link";
 import { Building2, ChevronRight, FileText, ShieldCheck, Wrench } from "lucide-react";
+import { useDemo } from "../../_components/demo-context";
 import { MiniBars, PageHeader, Panel, SectionHeading, StatusBadge } from "../../_components/ui";
-import { ownerMessages, ownerReports, reportSeries, tickets } from "../../_data/propertyos";
+import { ownerReports, reportSeries } from "../../_data/propertyos";
 
 export default function OwnerPortalPage() {
+  const { tickets, messages, unreadOwnerCount } = useDemo();
+  const visibleTickets = tickets.filter((t) => t.ownerVisible);
+  const ownerMsgs = messages.filter((m) => m.kind === "owner");
+
   return (
     <div className="space-y-5">
       <PageHeader
@@ -18,7 +25,7 @@ export default function OwnerPortalPage() {
         {[
           ["Occupancy", "95%", "Marina Heights"],
           ["Monthly rent", "$86.4k", "June projected"],
-          ["Open work", "7", "2 owner-visible"],
+          ["Open work", String(visibleTickets.length), `${unreadOwnerCount} messages`],
         ].map(([label, value, note]) => (
           <div key={label} className="rounded-[26px] bg-[#f3efe5] p-5 transition duration-300 hover:-translate-y-0.5">
             <p className="text-xs font-bold text-[#7a8276]">{label}</p>
@@ -61,8 +68,8 @@ export default function OwnerPortalPage() {
             </div>
           </div>
           <div className="mt-4 grid gap-3">
-            {ownerMessages.slice(0, 2).map((message) => (
-              <Link key={message.subject} href="/owner/portal/messages" className="flex items-center gap-3 rounded-[22px] bg-[#f7f3ea] p-4">
+            {ownerMsgs.slice(0, 2).map((message) => (
+              <Link key={message.id} href="/owner/portal/messages" className="flex items-center gap-3 rounded-[22px] bg-[#f7f3ea] p-4">
                 <div className="size-2 rounded-full bg-[#4e74a5]" />
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-bold">{message.subject}</p>
@@ -79,7 +86,7 @@ export default function OwnerPortalPage() {
         <Panel>
           <SectionHeading title="Visible maintenance" subtitle="A simple owner-safe repair history." />
           <div className="space-y-3">
-            {tickets.filter((ticket) => ticket.ownerVisible).slice(0, 3).map((ticket) => (
+            {visibleTickets.slice(0, 3).map((ticket) => (
               <Link key={ticket.id} href="/owner/portal/maintenance" className="flex items-center gap-3 rounded-[24px] bg-[#f7f3ea] p-4">
                 <div className="grid size-11 place-items-center rounded-2xl bg-white text-[#4e74a5]">
                   <Wrench size={18} />
@@ -91,6 +98,9 @@ export default function OwnerPortalPage() {
                 <StatusBadge label={ticket.priority} />
               </Link>
             ))}
+            {visibleTickets.length === 0 && (
+              <p className="text-sm text-[#667065] py-4 text-center">No maintenance items visible yet. The manager controls what appears here.</p>
+            )}
           </div>
         </Panel>
 

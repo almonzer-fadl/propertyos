@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Camera, CheckCircle2, MessageSquareText, Send, UserRoundCheck } from "lucide-react";
+import { Camera, CheckCircle2, Eye, EyeOff, MessageSquareText, Send, UserRoundCheck } from "lucide-react";
 import { useDemo } from "../../_components/demo-context";
 import { PageHeader, Panel, SectionHeading, SoftButton, StatusBadge } from "../../_components/ui";
 
@@ -10,7 +10,7 @@ const columns = ["New", "Assigned", "In Progress", "Waiting", "Resolved"];
 const statusOrder = ["New", "Assigned", "In Progress", "Waiting", "Resolved"];
 
 export default function MaintenancePage() {
-  const { tickets, advanceTicket } = useDemo();
+  const { tickets, advanceTicket, toggleOwnerVisibility } = useDemo();
   const [selectedId, setSelectedId] = useState(tickets[0].id);
 
   const selected = tickets.find((t) => t.id === selectedId) || tickets[0];
@@ -82,9 +82,19 @@ export default function MaintenancePage() {
           <h2 className="mt-3 text-3xl font-semibold tracking-tight">{selected.title}</h2>
           <p className="mt-3 text-sm leading-6 text-white/68">
             {selected.tenant} uploaded {selected.photos} photos for Unit {selected.unit} at{" "}
-            {selected.property}. Owner visibility is currently {selected.ownerVisible ? "on" : "off"} until the manager approves the
-            summary.
+            {selected.property}.
           </p>
+          <button
+            onClick={() => toggleOwnerVisibility(selected.id)}
+            className={`mt-4 flex w-full items-center justify-center gap-2 rounded-[22px] px-4 py-3 text-sm font-bold transition ${
+              selected.ownerVisible
+                ? "bg-[#bfe3b7] text-[#1d4628]"
+                : "bg-white/10 text-white/70 hover:bg-white/18"
+            }`}
+          >
+            {selected.ownerVisible ? <Eye size={17} /> : <EyeOff size={17} />}
+            {selected.ownerVisible ? "Visible to owner" : "Hidden from owner — click to show"}
+          </button>
           <div className="mt-5 grid grid-cols-2 gap-3">
             {[
               ["Ticket", selected.id],

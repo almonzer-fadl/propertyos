@@ -1,9 +1,12 @@
+"use client";
+
 import { CalendarClock, ReceiptText, Wrench } from "lucide-react";
-import { tickets } from "../../../_data/propertyos";
+import { useDemo } from "../../../_components/demo-context";
 import { PageHeader, Panel, SectionHeading, StatusBadge } from "../../../_components/ui";
 
 export default function OwnerMaintenancePage() {
-  const visibleTickets = tickets.filter((ticket) => ticket.ownerVisible);
+  const { tickets } = useDemo();
+  const visibleTickets = tickets.filter((t) => t.ownerVisible);
 
   return (
     <div className="space-y-5">
@@ -38,6 +41,12 @@ export default function OwnerMaintenancePage() {
             </div>
           </Panel>
         ))}
+        {visibleTickets.length === 0 && (
+          <div className="col-span-full rounded-[26px] border border-dashed border-[#cad5c1] bg-[#fbfaf5] p-8 text-center">
+            <p className="font-semibold text-[#151612]">No maintenance to show</p>
+            <p className="mt-1 text-sm text-[#667065]">The property manager will make items visible here once reviewed.</p>
+          </div>
+        )}
       </div>
 
       <Panel>
