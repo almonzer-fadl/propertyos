@@ -21,7 +21,7 @@ export default function TenantsPage() {
         title="Know who needs what, before they have to ask."
         description="No more digging through old texts to remember which tenant has the leaky sink and who's waiting on a part. Every tenant, their unit, open requests, and last contact in one list."
         actionLabel="Open tenant app"
-        actionHref="/tenet/portal"
+        actionHref="/tenant/portal"
       />
 
       <Panel>
@@ -56,7 +56,7 @@ export default function TenantsPage() {
           ))}
           {filtered.length === 0 && (
             <div className="col-span-full rounded-[24px] border border-dashed border-[#cad5c1] p-6 text-center text-sm text-[#667065]">
-              No tenants match "{query}"
+              No tenants match &quot;{query}&quot;
             </div>
           )}
         </div>
@@ -67,7 +67,7 @@ export default function TenantsPage() {
           <Wrench size={17} />
           View open maintenance
         </SoftButton>
-        <SoftButton href="/tenet/portal">
+        <SoftButton href="/tenant/portal">
           <MessageSquareText size={17} />
           Demo tenant portal
         </SoftButton>

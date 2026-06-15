@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { Camera, CheckCircle2, Eye, EyeOff, MessageSquareText, Send, ShieldCheck, UserRoundCheck } from "lucide-react";
 import { useDemo } from "../../_components/demo-context";
 import { PageHeader, Panel, SectionHeading, SoftButton, StatusBadge } from "../../_components/ui";
@@ -21,10 +20,10 @@ export default function MaintenancePage() {
     <div className="space-y-6">
       <PageHeader
         eyebrow="Company OS / Maintenance"
-        title="Every repair request, tracked. No more 'did the plumber show up?'"
-        description="Your tenants submit requests with photos. You triage, assign a contractor, and the owner sees only what you want them to see. Click any ticket to advance its status — just like you would in real life."
+        title="Every repair request, tracked from tenant to owner."
+        description="Tenants submit requests with photos. Managers triage the issue, assign a contractor, and send an approved owner update without exposing internal notes."
         actionLabel="View tenant app"
-        actionHref="/tenet/portal"
+        actionHref="/tenant/portal"
       />
 
       <div className="grid gap-5 2xl:grid-cols-[1.35fr_0.65fr]">
@@ -79,12 +78,12 @@ export default function MaintenancePage() {
 
         <Panel className="!bg-[#151612] text-white">
           <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#bfe3b7]">
-            Selected ticket
+            Full repair context
           </p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight">{selected.title}</h2>
           <p className="mt-3 text-sm leading-6 text-white/68">
-            {selected.tenant} uploaded {selected.photos} photos for Unit {selected.unit} at{" "}
-            {selected.property}.
+            Everything the manager needs is here: tenant, unit, photos, contractor, estimate,
+            owner visibility, and current status.
           </p>
           <button
             onClick={() => toggleOwnerVisibility(selected.id)}
@@ -95,7 +94,7 @@ export default function MaintenancePage() {
             }`}
           >
             {selected.ownerVisible ? <Eye size={17} /> : <EyeOff size={17} />}
-            {selected.ownerVisible ? "Visible to owner" : "Hidden from owner — click to show"}
+            {selected.ownerVisible ? "Approved for owner view" : "Internal only — click to approve"}
           </button>
           <div className="mt-5 grid grid-cols-2 gap-3">
             {[
@@ -115,7 +114,7 @@ export default function MaintenancePage() {
               ["Request received", Camera],
               ["Manager triage", UserRoundCheck],
               ["Assign contractor", CheckCircle2],
-              ["Owner-safe update", Send],
+              ["Owner-approved update", Send],
             ].map(([label, Icon], index) => {
               const stepIdx = statusOrder.indexOf(selected.status);
               const done = index <= (stepIdx === -1 ? 0 : Math.min(stepIdx, 3));
@@ -132,10 +131,10 @@ export default function MaintenancePage() {
 
           <div className="mt-6 border-t border-white/10 pt-5">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#bfe3b7]">
-              Owner-safe summary
+              Owner-approved update
             </p>
             <p className="mt-1 text-xs text-white/50">
-              Internal notes are filtered before the owner sees them. Write a note below to preview what the owner receives.
+              Internal notes stay private. The owner receives a clean, approved update with the right level of detail.
             </p>
             <div className="mt-4 grid gap-3 lg:grid-cols-2">
               <div>
@@ -148,7 +147,7 @@ export default function MaintenancePage() {
               <div>
                 <p className="text-xs font-bold text-[#bfe3b7] mb-2 flex items-center gap-1.5">
                   <ShieldCheck size={12} />
-                  OWNER SEES
+                  OWNER APPROVED
                 </p>
                 <div className="rounded-2xl bg-[#bfe3b7]/12 p-4 ring-1 ring-[#bfe3b7]/20 min-h-[90px]">
                   <p className="text-sm leading-6 text-[#bfe3b7]">
@@ -189,12 +188,12 @@ export default function MaintenancePage() {
           )}
         </div>
         <button
-          onClick={() => { showToast("Owner update sent"); addActivity("Owner-safe update sent for selected ticket."); }}
+          onClick={() => { showToast("Owner update sent"); addActivity("Owner-approved update sent for selected ticket."); }}
           className="inline-flex w-full min-h-11 items-center justify-center gap-2 rounded-full border border-[#d8dfd1] bg-white/80 px-4 py-2.5 text-sm font-semibold text-[#2b3028] transition duration-300 hover:-translate-y-0.5 hover:border-[#bfcbb5] hover:bg-white"
         >
           Send owner update
         </button>
-        <SoftButton href="/tenet/portal">
+        <SoftButton href="/tenant/portal">
           <MessageSquareText size={17} />
           Tenant status view
         </SoftButton>

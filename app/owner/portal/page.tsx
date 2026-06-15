@@ -108,7 +108,7 @@ export default function OwnerPortalPage() {
           <SectionHeading title="Latest reports" subtitle="Monthly packet, statement, and supporting docs." />
           <div className="space-y-3">
             {ownerReports.map((report) => (
-              <Link key={report.title} href="/owner/portal/reports" className="flex items-center gap-3 rounded-[24px] bg-[#f7f3ea] p-4">
+              <Link key={`${report.title}-${report.date}`} href="/owner/portal/reports" className="flex items-center gap-3 rounded-[24px] bg-[#f7f3ea] p-4">
                 <div className="grid size-11 place-items-center rounded-2xl bg-white text-[#4e74a5]">
                   <FileText size={18} />
                 </div>

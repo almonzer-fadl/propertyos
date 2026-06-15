@@ -43,8 +43,8 @@ export default function TenantDocumentsPage() {
         </div>
         <SectionHeading title="My documents" subtitle={`${filtered.length} file${filtered.length !== 1 ? "s" : ""} linked to Marina Heights Unit 12B`} />
         <div className="grid gap-3 md:grid-cols-2">
-          {filtered.map((doc) => (
-            <div key={doc.name} className="flex items-center gap-3 rounded-[24px] bg-[#f7f3ea] p-4">
+          {filtered.map((doc, index) => (
+            <div key={`${doc.name}-${doc.type}-${index}`} className="flex items-center gap-3 rounded-[24px] bg-[#f7f3ea] p-4">
               <div className="grid size-12 place-items-center rounded-2xl bg-white text-[#4e74a5]">
                 <FileText size={20} />
               </div>
@@ -57,7 +57,7 @@ export default function TenantDocumentsPage() {
           ))}
           {filtered.length === 0 && (
             <div className="col-span-full rounded-[24px] border border-dashed border-[#cad5c1] p-6 text-center text-sm text-[#667065]">
-              No documents match "{query}"
+              No documents match &quot;{query}&quot;
             </div>
           )}
         </div>

@@ -8,7 +8,7 @@ export default function TenantPortalLayout({ children }: { children: React.React
     <PortalShell
       appName="PropertyOS Tenant"
       appType="Tenant portal"
-      baseHref="/tenet/portal"
+      baseHref="/tenant/portal"
       nav={tenantNav}
       accent="green"
     >

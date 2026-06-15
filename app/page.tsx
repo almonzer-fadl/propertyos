@@ -241,7 +241,7 @@ export default function Home() {
             </p>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               <LinkButton href="/dashboard">Manager demo</LinkButton>
-              <LinkButton href="/tenet/portal">Tenant portal</LinkButton>
+              <LinkButton href="/tenant/portal">Tenant portal</LinkButton>
               <LinkButton href="/owner/portal">Owner portal</LinkButton>
               <LinkButton href="/dashboard/maintenance">Maintenance flow</LinkButton>
             </div>

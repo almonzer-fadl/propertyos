@@ -182,7 +182,7 @@ export function Timeline({ items }: { items: string[] }) {
   return (
     <div className="space-y-4">
       {items.map((item, index) => (
-        <div key={item} className="flex gap-3">
+        <div key={`${item}-${index}`} className="flex gap-3">
           <div className="grid size-9 shrink-0 place-items-center rounded-2xl bg-[#f1eadc] text-[#6f5e35]">
             {index < 2 ? <CheckCircle2 size={17} /> : <Clock3 size={17} />}
           </div>

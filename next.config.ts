@@ -1,7 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async redirects() {
+    return [
+      {
+        source: "/tenet/portal/:path*",
+        destination: "/tenant/portal/:path*",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -45,7 +45,6 @@ export default function TenantRequestsPage() {
             ].map(({ label, value }) => {
               const isCategory = label.startsWith("Category");
               const isPriority = label.startsWith("Priority");
-              const isEntry = label.startsWith("Entry");
               const active = isCategory ? category === value : isPriority ? priority === value : entry === value;
               return (
                 <button

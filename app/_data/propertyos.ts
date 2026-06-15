@@ -23,7 +23,7 @@ export const navItems = [
 ];
 
 export const portalItems = [
-  { label: "Tenant App", href: "/tenet/portal", icon: MessageSquareText },
+  { label: "Tenant App", href: "/tenant/portal", icon: MessageSquareText },
   { label: "Owner App", href: "/owner/portal", icon: ShieldCheck },
 ];
 
@@ -202,11 +202,11 @@ export const ownerNav = [
 ];
 
 export const tenantNav = [
-  { label: "Home", href: "/tenet/portal", icon: Home },
-  { label: "Requests", href: "/tenet/portal/requests", icon: Wrench },
-  { label: "Documents", href: "/tenet/portal/documents", icon: FileText },
-  { label: "Messages", href: "/tenet/portal/messages", icon: MessageSquareText },
-  { label: "Profile", href: "/tenet/portal/profile", icon: Users },
+  { label: "Home", href: "/tenant/portal", icon: Home },
+  { label: "Requests", href: "/tenant/portal/requests", icon: Wrench },
+  { label: "Documents", href: "/tenant/portal/documents", icon: FileText },
+  { label: "Messages", href: "/tenant/portal/messages", icon: MessageSquareText },
+  { label: "Profile", href: "/tenant/portal/profile", icon: Users },
 ];
 
 export const ownerReports = [

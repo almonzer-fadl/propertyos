@@ -13,7 +13,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   const liveCounts: Record<string, string> = {
     "/dashboard/maintenance": String(tickets.filter((t) => t.status !== "Resolved").length),
-    "/tenet/portal": String(unreadTenantCount),
+    "/tenant/portal": String(unreadTenantCount),
     "/owner/portal": String(unreadOwnerCount),
   };
 

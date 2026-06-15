@@ -42,6 +42,39 @@ export default function DashboardPage() {
       t.id.toLowerCase().includes(query.toLowerCase()),
   );
 
+  const demoPath = [
+    {
+      label: "Tenant submits request",
+      detail: "Issue, unit, photos, access notes",
+      href: "/tenant/portal/requests",
+      icon: MessageSquareText,
+    },
+    {
+      label: "Manager triages",
+      detail: "Priority, property, tenant, context",
+      href: "/dashboard/maintenance",
+      icon: Search,
+    },
+    {
+      label: "Contractor assigned",
+      detail: "Work order and repair context",
+      href: "/dashboard/maintenance",
+      icon: Wrench,
+    },
+    {
+      label: "Owner gets approved update",
+      detail: "Clean update, no internal noise",
+      href: "/owner/portal",
+      icon: ShieldCheck,
+    },
+    {
+      label: "Reports stay organized",
+      detail: "Documents and history attached",
+      href: "/dashboard/reports",
+      icon: FileText,
+    },
+  ];
+
   return (
     <div className="space-y-6">
       <PageHeader
@@ -68,6 +101,68 @@ export default function DashboardPage() {
           return <Metric key={metric.label} {...metric} />;
         })}
       </div>
+
+      <section className="soft-rise-delay overflow-hidden rounded-[28px] border border-[#151612]/10 bg-[#151612] p-4 text-white shadow-[0_24px_80px_rgba(21,22,18,0.2)] sm:p-6">
+        <div className="pointer-events-none absolute inset-0" />
+        <div className="relative flex flex-col gap-6">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-2xl">
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#bfe3b7]">
+                Demo path
+              </p>
+              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+                One maintenance issue, followed from tenant to owner.
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-white/64">
+                Record this flow: request, triage, assignment, approved owner update, and reporting history.
+              </p>
+            </div>
+            <Link
+              href="/dashboard/maintenance"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#bfe3b7] px-5 py-3 text-sm font-bold text-[#1d4628] transition hover:-translate-y-0.5 hover:bg-white sm:w-fit"
+            >
+              Start the flow
+              <ArrowRight size={16} />
+            </Link>
+          </div>
+
+          <div className="relative">
+            <div className="absolute left-5 right-5 top-9 hidden h-px bg-white/10 sm:block" />
+            <div className="path-line absolute left-5 right-5 top-9 hidden h-px bg-gradient-to-r from-[#bfe3b7] via-white/55 to-[#bfe3b7]/40 sm:block" />
+            <div className="grid gap-3 sm:grid-cols-5">
+              {demoPath.map((step, index) => {
+                const Icon = step.icon;
+
+                return (
+                  <Link
+                    key={step.label}
+                    href={step.href}
+                    style={{ animationDelay: `${index * 90}ms` }}
+                    className={`path-card group relative rounded-[24px] border border-white/10 bg-white/[0.07] p-4 backdrop-blur transition hover:-translate-y-1 hover:bg-white/[0.12] ${
+                      index === 0 ? "path-card-active" : ""
+                    }`}
+                  >
+                    <div className="mb-4 flex items-center justify-between gap-3">
+                      <div className="grid size-11 place-items-center rounded-2xl bg-white text-[#151612] shadow-[0_12px_30px_rgba(0,0,0,0.18)] transition group-hover:scale-105">
+                        <Icon size={19} />
+                      </div>
+                      <span className="grid size-7 place-items-center rounded-full bg-[#bfe3b7] text-xs font-black text-[#1d4628]">
+                        {index + 1}
+                      </span>
+                    </div>
+                    <p className="text-sm font-bold leading-5 text-white">{step.label}</p>
+                    <p className="mt-2 text-xs font-medium leading-5 text-white/52">{step.detail}</p>
+                    <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-3 text-[10px] font-bold uppercase tracking-[0.14em] text-[#bfe3b7]">
+                      Open
+                      <ArrowRight size={14} className="transition group-hover:translate-x-1" />
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
 
       <div className="grid gap-5 xl:grid-cols-[1.35fr_0.65fr]">
         <Panel>
@@ -114,7 +209,7 @@ export default function DashboardPage() {
             ))}
             {filteredQueue.length === 0 && (
               <div className="rounded-[24px] border border-dashed border-[#cad5c1] p-6 text-center text-sm text-[#667065]">
-                No tickets match "{query}"
+                No tickets match &quot;{query}&quot;
               </div>
             )}
           </div>
@@ -122,15 +217,15 @@ export default function DashboardPage() {
 
         <Panel>
           <SectionHeading
-            title="Live demo walkthrough"
-            subtitle="Click through the exact flow your team would use every day."
+            title="Open each role"
+            subtitle="Use these when recording the short demo path."
           />
           <div className="grid gap-3">
             <SoftButton href="/dashboard/maintenance">
               <Wrench size={17} />
               Triage incoming work
             </SoftButton>
-            <SoftButton href="/tenet/portal">
+            <SoftButton href="/tenant/portal">
               <MessageSquareText size={17} />
               Tenant submits a request
             </SoftButton>
@@ -158,7 +253,7 @@ export default function DashboardPage() {
               </div>
             ))}
             {urgentTickets.length === 0 && (
-              <p className="text-sm text-[#667065]">Nothing urgent. A rare and beautiful moment.</p>
+              <p className="text-sm text-[#667065]">No urgent maintenance items right now.</p>
             )}
           </div>
         </Panel>
