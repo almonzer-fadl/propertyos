@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import {
   ArrowRight,
   Building2,
   FileText,
   MessageSquareText,
+  Search,
   ShieldCheck,
   Wrench,
 } from "lucide-react";
@@ -29,8 +31,17 @@ import {
 
 export default function DashboardPage() {
   const { tickets } = useDemo();
+  const [query, setQuery] = useState("");
   const urgentTickets = tickets.filter((t) => t.priority === "Urgent");
   const openTickets = tickets.filter((t) => t.status !== "Resolved");
+
+  const filteredQueue = openTickets.filter(
+    (t) =>
+      t.title.toLowerCase().includes(query.toLowerCase()) ||
+      t.property.toLowerCase().includes(query.toLowerCase()) ||
+      t.tenant.toLowerCase().includes(query.toLowerCase()) ||
+      t.id.toLowerCase().includes(query.toLowerCase()),
+  );
 
   return (
     <div className="space-y-6">
@@ -65,8 +76,18 @@ export default function DashboardPage() {
             title="Today's operating queue"
             subtitle="Every request has context, priority, owner visibility, and next action."
           />
+          <div className="mb-4 flex items-center gap-3 rounded-[22px] bg-[#f5f1e7] px-4 py-3">
+            <Search size={17} className="text-[#7a8276]" />
+            <input
+              type="text"
+              placeholder="Filter by title, property, tenant, or ticket ID..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              className="w-full bg-transparent text-sm text-[#151612] placeholder:text-[#a3aca0] outline-none"
+            />
+          </div>
           <div className="grid gap-3">
-            {openTickets.slice(0, 4).map((ticket) => (
+            {filteredQueue.slice(0, 5).map((ticket) => (
               <Link
                 key={ticket.id}
                 href="/dashboard/maintenance"
@@ -92,6 +113,11 @@ export default function DashboardPage() {
                 </div>
               </Link>
             ))}
+            {filteredQueue.length === 0 && (
+              <div className="rounded-[24px] border border-dashed border-[#cad5c1] p-6 text-center text-sm text-[#667065]">
+                No tickets match "{query}"
+              </div>
+            )}
           </div>
         </Panel>
 
