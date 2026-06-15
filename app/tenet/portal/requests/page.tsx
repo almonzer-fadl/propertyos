@@ -6,7 +6,7 @@ import { useDemo } from "../../../_components/demo-context";
 import { PageHeader, Panel, SectionHeading, StatusBadge } from "../../../_components/ui";
 
 export default function TenantRequestsPage() {
-  const { tenantRequests, addTenantRequest } = useDemo();
+  const { tenantRequests, addTenantRequest, showToast } = useDemo();
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("Plumbing");
   const [priority, setPriority] = useState("Urgent");
@@ -16,6 +16,7 @@ export default function TenantRequestsPage() {
   const handleSubmit = () => {
     if (!title.trim()) return;
     addTenantRequest(title.trim(), "", priority);
+    showToast("Request submitted — manager notified");
     setTitle("");
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 2000);

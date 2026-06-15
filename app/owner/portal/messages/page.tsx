@@ -5,7 +5,7 @@ import { useDemo } from "../../../_components/demo-context";
 import { PageHeader, Panel, SectionHeading, StatusBadge } from "../../../_components/ui";
 
 export default function OwnerMessagesPage() {
-  const { messages, markMessageRead } = useDemo();
+  const { messages, markMessageRead, showToast, addActivity } = useDemo();
   const ownerMsgs = messages.filter((m) => m.kind === "owner");
 
   return (
@@ -56,7 +56,13 @@ export default function OwnerMessagesPage() {
               once the visit time is confirmed.
             </p>
           </div>
-          <button className="mt-4 flex w-full items-center justify-center gap-2 rounded-[22px] bg-[#151612] px-4 py-3 text-sm font-bold text-white">
+          <button
+            onClick={() => {
+              showToast("Reply sent to Northline PM");
+              addActivity("Owner replied to plumbing update thread.");
+            }}
+            className="mt-4 flex w-full items-center justify-center gap-2 rounded-[22px] bg-[#151612] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#2a2c24]"
+          >
             <Send size={17} />
             Send reply
           </button>

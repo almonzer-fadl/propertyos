@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { DemoProvider } from "./_components/demo-context";
+import { DemoShell } from "./_components/demo-shell";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +31,7 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <body className="min-h-full flex flex-col">
-        <DemoProvider>{children}</DemoProvider>
+        <DemoShell>{children}</DemoShell>
       </body>
     </html>
   );

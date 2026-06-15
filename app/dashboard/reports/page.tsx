@@ -1,8 +1,12 @@
+"use client";
+
 import { Download, ShieldCheck } from "lucide-react";
 import { metrics, reportSeries } from "../../_data/propertyos";
 import { Metric, MiniBars, PageHeader, Panel, SectionHeading, SoftButton } from "../../_components/ui";
+import { useDemo } from "../../_components/demo-context";
 
 export default function ReportsPage() {
+  const { showToast, addActivity } = useDemo();
   return (
     <div className="space-y-6">
       <PageHeader
@@ -27,10 +31,13 @@ export default function ReportsPage() {
         <Panel>
           <SectionHeading title="Report actions" subtitle="Demo buttons for the monthly owner workflow." />
           <div className="grid gap-3">
-            <SoftButton href="/dashboard/reports">
+            <button
+              onClick={() => { showToast("Owner packet exported"); addActivity("Monthly owner packet exported."); }}
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-[#d8dfd1] bg-white/80 px-4 py-2.5 text-sm font-semibold text-[#2b3028] transition duration-300 hover:-translate-y-0.5 hover:border-[#bfcbb5] hover:bg-white"
+            >
               <Download size={17} />
               Export owner packet
-            </SoftButton>
+            </button>
             <SoftButton href="/owner/portal">
               <ShieldCheck size={17} />
               Preview owner portal

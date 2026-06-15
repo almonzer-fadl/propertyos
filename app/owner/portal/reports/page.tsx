@@ -1,8 +1,12 @@
+"use client";
+
 import { Download, FileText } from "lucide-react";
 import { ownerReports, reportSeries } from "../../../_data/propertyos";
 import { MiniBars, PageHeader, Panel, SectionHeading, SoftButton, StatusBadge } from "../../../_components/ui";
+import { useDemo } from "../../../_components/demo-context";
 
 export default function OwnerReportsPage() {
+  const { showToast, addActivity } = useDemo();
   return (
     <div className="space-y-5">
       <PageHeader
@@ -38,12 +42,20 @@ export default function OwnerReportsPage() {
       </div>
 
       <div className="grid gap-3 sm:grid-cols-3">
-        <SoftButton href="/owner/portal/reports">
+        <button
+          onClick={() => { showToast("June owner packet downloaded"); addActivity("Owner downloaded June owner packet."); }}
+          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-[#d8dfd1] bg-white/80 px-4 py-2.5 text-sm font-semibold text-[#2b3028] transition duration-300 hover:-translate-y-0.5 hover:border-[#bfcbb5] hover:bg-white"
+        >
           <Download size={17} />
           Download PDF
-        </SoftButton>
+        </button>
         <SoftButton href="/owner/portal/documents">View documents</SoftButton>
-        <SoftButton href="/owner/portal/messages">Ask manager</SoftButton>
+        <button
+          onClick={() => { showToast("Message sent to property manager"); addActivity("Owner sent a message to property manager."); }}
+          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-[#d8dfd1] bg-white/80 px-4 py-2.5 text-sm font-semibold text-[#2b3028] transition duration-300 hover:-translate-y-0.5 hover:border-[#bfcbb5] hover:bg-white"
+        >
+          Ask manager
+        </button>
       </div>
     </div>
   );

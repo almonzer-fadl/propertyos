@@ -5,13 +5,15 @@ import Link from "next/link";
 import { Camera, CheckCircle2, Eye, EyeOff, MessageSquareText, Send, UserRoundCheck } from "lucide-react";
 import { useDemo } from "../../_components/demo-context";
 import { PageHeader, Panel, SectionHeading, SoftButton, StatusBadge } from "../../_components/ui";
+import { contractors } from "../../_data/propertyos";
 
 const columns = ["New", "Assigned", "In Progress", "Waiting", "Resolved"];
 const statusOrder = ["New", "Assigned", "In Progress", "Waiting", "Resolved"];
 
 export default function MaintenancePage() {
-  const { tickets, advanceTicket, toggleOwnerVisibility } = useDemo();
+  const { tickets, advanceTicket, toggleOwnerVisibility, assignContractor, showToast, addActivity } = useDemo();
   const [selectedId, setSelectedId] = useState(tickets[0].id);
+  const [showPicker, setShowPicker] = useState(false);
 
   const selected = tickets.find((t) => t.id === selectedId) || tickets[0];
 
@@ -131,12 +133,38 @@ export default function MaintenancePage() {
       </div>
 
       <div className="grid gap-3 sm:grid-cols-3">
-        <SoftButton href="/dashboard/contractors">
-          Assign contractor
-        </SoftButton>
-        <SoftButton href="/owner/portal">
+        <div className="relative">
+          <button
+            onClick={() => setShowPicker(!showPicker)}
+            className="inline-flex w-full min-h-11 items-center justify-center gap-2 rounded-full border border-[#d8dfd1] bg-white/80 px-4 py-2.5 text-sm font-semibold text-[#2b3028] transition duration-300 hover:-translate-y-0.5 hover:border-[#bfcbb5] hover:bg-white"
+          >
+            Assign contractor
+          </button>
+          {showPicker && (
+            <div className="absolute bottom-full left-0 right-0 z-30 mb-2 rounded-[20px] border border-[#dfe5d8]/80 bg-white p-2 shadow-[0_18px_50px_rgba(52,64,45,0.15)]">
+              {contractors.map((c) => (
+                <button
+                  key={c.name}
+                  onClick={() => {
+                    assignContractor(selected.id, c.name);
+                    showToast(`Assigned: ${c.name}`);
+                    setShowPicker(false);
+                  }}
+                  className="w-full rounded-[14px] px-4 py-3 text-left text-sm font-bold text-[#151612] transition hover:bg-[#f7f3ea]"
+                >
+                  <span>{c.name}</span>
+                  <span className="ml-2 text-xs text-[#667065]">{c.trade} — {c.rating}</span>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+        <button
+          onClick={() => { showToast("Owner update sent"); addActivity("Owner-safe update sent for selected ticket."); }}
+          className="inline-flex w-full min-h-11 items-center justify-center gap-2 rounded-full border border-[#d8dfd1] bg-white/80 px-4 py-2.5 text-sm font-semibold text-[#2b3028] transition duration-300 hover:-translate-y-0.5 hover:border-[#bfcbb5] hover:bg-white"
+        >
           Send owner update
-        </SoftButton>
+        </button>
         <SoftButton href="/tenet/portal">
           <MessageSquareText size={17} />
           Tenant status view
