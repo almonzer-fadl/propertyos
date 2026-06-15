@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Bell, Command, Search, Sparkles } from "lucide-react";
+import { Bell, Command, Search } from "lucide-react";
 import { navItems, portalItems } from "../_data/propertyos";
 import { useDemo } from "./demo-context";
 
@@ -100,16 +100,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               </div>
             </div>
 
-            <div className="mt-auto rounded-[28px] bg-[#151612] p-5 text-white">
-              <div className="mb-4 grid size-10 place-items-center rounded-2xl bg-white/12">
-                <Sparkles size={18} />
-              </div>
-              <p className="text-sm font-bold">Sales demo mode</p>
-              <p className="mt-2 text-xs leading-5 text-white/68">
-                Built for a property manager walkthrough: request, triage, owner update,
-                documents, report.
-              </p>
-            </div>
           </div>
         </aside>
 
