@@ -4,10 +4,18 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Bell, Command, Search, Sparkles } from "lucide-react";
 import { navItems, portalItems } from "../_data/propertyos";
+import { useDemo } from "./demo-context";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const { tickets, unreadOwnerCount, unreadTenantCount } = useDemo();
   const mobileItems = [...navItems.slice(0, 4), portalItems[0]];
+
+  const liveCounts: Record<string, string> = {
+    "/dashboard/maintenance": String(tickets.filter((t) => t.status !== "Resolved").length),
+    "/tenet/portal": String(unreadTenantCount),
+    "/owner/portal": String(unreadOwnerCount),
+  };
 
   return (
     <div className="min-h-screen bg-[#f3efe5] text-[#151612]">
@@ -51,13 +59,13 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                   >
                     <Icon size={18} />
                     <span>{item.label}</span>
-                    {item.count ? (
+                    {(item.count || liveCounts[item.href]) ? (
                       <span
                         className={`ml-auto rounded-full px-2 py-0.5 text-xs ${
                           active ? "bg-white/18 text-white" : "bg-[#fff0ea] text-[#a3482e]"
                         }`}
                       >
-                        {item.count}
+                        {liveCounts[item.href] || item.count}
                       </span>
                     ) : null}
                   </Link>

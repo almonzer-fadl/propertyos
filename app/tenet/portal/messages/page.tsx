@@ -1,8 +1,13 @@
+"use client";
+
 import { MessageSquareText, Send } from "lucide-react";
-import { tenantMessages } from "../../../_data/propertyos";
+import { useDemo } from "../../../_components/demo-context";
 import { PageHeader, Panel, SectionHeading, StatusBadge } from "../../../_components/ui";
 
 export default function TenantMessagesPage() {
+  const { messages, markMessageRead } = useDemo();
+  const tenantMsgs = messages.filter((m) => m.kind === "tenant");
+
   return (
     <div className="space-y-5">
       <PageHeader
@@ -15,8 +20,12 @@ export default function TenantMessagesPage() {
         <Panel>
           <SectionHeading title="Inbox" subtitle="Recent tenant communication." />
           <div className="space-y-3">
-            {tenantMessages.map((message) => (
-              <div key={message.subject} className="rounded-[24px] bg-[#f7f3ea] p-4">
+            {tenantMsgs.map((message) => (
+              <button
+                key={message.id}
+                onClick={() => markMessageRead(message.id)}
+                className="w-full rounded-[24px] bg-[#f7f3ea] p-4 text-left transition hover:bg-white"
+              >
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <p className="text-sm font-bold">{message.from}</p>
@@ -25,7 +34,7 @@ export default function TenantMessagesPage() {
                   {message.unread ? <StatusBadge label="New" /> : null}
                 </div>
                 <p className="mt-3 text-xs font-bold text-[#7a8276]">{message.time}</p>
-              </div>
+              </button>
             ))}
           </div>
         </Panel>
