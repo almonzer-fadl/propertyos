@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 import { useDemo } from "../_components/demo-context";
 import {
-  activity,
   metrics,
   properties,
   reportSeries,
@@ -30,7 +29,7 @@ import {
 } from "../_components/ui";
 
 export default function DashboardPage() {
-  const { tickets } = useDemo();
+  const { tickets, activity } = useDemo();
   const [query, setQuery] = useState("");
   const urgentTickets = tickets.filter((t) => t.priority === "Urgent");
   const openTickets = tickets.filter((t) => t.status !== "Resolved");

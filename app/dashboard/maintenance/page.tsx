@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Camera, CheckCircle2, Eye, EyeOff, MessageSquareText, Send, UserRoundCheck } from "lucide-react";
+import { Camera, CheckCircle2, Eye, EyeOff, MessageSquareText, Send, ShieldCheck, UserRoundCheck } from "lucide-react";
 import { useDemo } from "../../_components/demo-context";
 import { PageHeader, Panel, SectionHeading, SoftButton, StatusBadge } from "../../_components/ui";
 import { contractors } from "../../_data/propertyos";
@@ -30,12 +30,12 @@ export default function MaintenancePage() {
       <div className="grid gap-5 2xl:grid-cols-[1.35fr_0.65fr]">
         <Panel>
           <SectionHeading title="Work order board" subtitle="Click any ticket to advance it to the next status." />
-          <div className="grid gap-3 lg:grid-cols-5">
+          <div className="flex gap-3 overflow-x-auto pb-2 -mx-1 px-1 lg:grid lg:grid-cols-5 lg:overflow-visible lg:pb-0 lg:mx-0 lg:px-0">
             {columns.map((column) => {
               const columnTickets = tickets.filter((t) => t.status === column);
 
               return (
-                <div key={column} className="rounded-[26px] bg-[#f7f3ea] p-3">
+                <div key={column} className="w-[220px] flex-shrink-0 rounded-[26px] bg-[#f7f3ea] p-3 lg:w-auto lg:flex-shrink">
                   <div className="mb-3 flex items-center justify-between px-1">
                     <p className="text-sm font-bold text-[#343a31]">{column}</p>
                     <span className="rounded-full bg-white px-2 py-0.5 text-xs font-bold text-[#6c7566]">
@@ -128,6 +128,35 @@ export default function MaintenancePage() {
                 </div>
               );
             })}
+          </div>
+
+          <div className="mt-6 border-t border-white/10 pt-5">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#bfe3b7]">
+              Owner-safe summary
+            </p>
+            <p className="mt-1 text-xs text-white/50">
+              Internal notes are filtered before the owner sees them. Write a note below to preview what the owner receives.
+            </p>
+            <div className="mt-4 grid gap-3 lg:grid-cols-2">
+              <div>
+                <p className="text-xs font-bold text-white/40 mb-2">INTERNAL NOTE</p>
+                <textarea
+                  placeholder="e.g. Pipe is corroded, might need to open the wall. Tenant frustrated. Quoted $350 for full replacement."
+                  className="w-full rounded-2xl bg-white/8 px-4 py-3 text-sm text-white placeholder:text-white/25 outline-none ring-1 ring-white/10 focus:ring-white/25 min-h-[90px] resize-none"
+                />
+              </div>
+              <div>
+                <p className="text-xs font-bold text-[#bfe3b7] mb-2 flex items-center gap-1.5">
+                  <ShieldCheck size={12} />
+                  OWNER SEES
+                </p>
+                <div className="rounded-2xl bg-[#bfe3b7]/12 p-4 ring-1 ring-[#bfe3b7]/20 min-h-[90px]">
+                  <p className="text-sm leading-6 text-[#bfe3b7]">
+                    A repair is in progress for Unit 12B. Our team is assessing the scope of work and will provide a cost summary once confirmed. No action is needed from you at this time.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </Panel>
       </div>

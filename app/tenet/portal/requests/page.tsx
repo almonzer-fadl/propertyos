@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Camera, CheckCircle2, Clock3, Wrench } from "lucide-react";
+import { Camera, CheckCircle2, Clock3, Plus, Wrench } from "lucide-react";
 import { useDemo } from "../../../_components/demo-context";
 import { PageHeader, Panel, SectionHeading, StatusBadge } from "../../../_components/ui";
 
@@ -11,6 +11,7 @@ export default function TenantRequestsPage() {
   const [category, setCategory] = useState("Plumbing");
   const [priority, setPriority] = useState("Urgent");
   const [entry, setEntry] = useState("After 2 PM");
+  const [photoCount, setPhotoCount] = useState(4);
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = () => {
@@ -75,11 +76,30 @@ export default function TenantRequestsPage() {
           />
 
           <div className="mt-4 rounded-2xl border border-dashed border-[#cfd8c7] bg-[#fbfaf5] p-4">
-            <div className="flex items-center gap-2 font-bold">
-              <Camera size={17} />
-              Photos
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2 font-bold">
+                <Camera size={17} />
+                Photos
+              </div>
+              <button
+                onClick={() => setPhotoCount((c) => Math.min(c + 1, 8))}
+                className="grid size-8 place-items-center rounded-xl bg-[#e8f5e4] text-[#2d6b3d] transition hover:bg-[#d0ebcb]"
+              >
+                <Plus size={16} />
+              </button>
             </div>
-            <p className="mt-2 text-sm text-[#667065]">4 images attached to help the manager triage faster.</p>
+            {photoCount > 0 ? (
+              <div className="mt-3 grid grid-cols-4 gap-2">
+                {Array.from({ length: Math.min(photoCount, 8) }).map((_, i) => (
+                  <div key={i} className="aspect-square rounded-xl bg-[#e3ded1] flex items-center justify-center">
+                    <Camera size={16} className="text-[#a39982]" />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="mt-2 text-sm text-[#667065]">No photos attached yet.</p>
+            )}
+            <p className="mt-2 text-xs text-[#667065]">{photoCount} photo{photoCount !== 1 ? "s" : ""} attached to help the manager triage faster.</p>
           </div>
 
           <button
