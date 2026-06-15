@@ -55,7 +55,7 @@ export default function TenantRequestsPage() {
                   }}
                   className={`min-h-14 rounded-2xl px-3 py-3 text-left text-sm font-bold transition ${
                     active
-                      ? "bg-[#151612] text-white"
+                      ? "bg-[#e8f5e4] text-[#2d6b3d] ring-1 ring-[#bde5b9]"
                       : "bg-[#f7f3ea] text-[#3f453b] hover:bg-[#ece6d9]"
                   }`}
                 >
